@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Put, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Put, Param, Delete, Patch } from '@nestjs/common';
 import { LinkedIdentityService } from './linked-identity.service';
 import { CreateLinkedIdentityDto } from './dto/create-linked-identity.dto';
 import { UpdateLinkedIdentityDto } from './dto/update-linked-identity.dto';
@@ -25,6 +25,11 @@ export class LinkedIdentityController {
   @Put(':id')
   update(@Param('id') id: string, @Body() updateLinkedIdentityDto: UpdateLinkedIdentityDto) {
     return this.linkedIdentityService.update(+id, updateLinkedIdentityDto);
+  }
+
+  @Patch(':LinkedIdentityId/biodatum/BioDatumId')
+  setBioDatumById(@Param('LinkedIdentityId') LinkedIdentityId: string, @Param('BioDatumId') BioDatumId: string) {
+    return this.linkedIdentityService.setBioDatumById(+LinkedIdentityId, +BioDatumId);
   }
 
   @Delete(':id')

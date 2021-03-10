@@ -1,6 +1,7 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { BioDatum } from '../bio-data/entities/bio-datum.entity';
 import { CreateLinkedIdentityDto } from './dto/create-linked-identity.dto';
 import { UpdateLinkedIdentityDto } from './dto/update-linked-identity.dto';
 import { LinkedIdentity } from './entities/linked-identity.entity';
@@ -12,7 +13,7 @@ export class LinkedIdentityService {
     @InjectRepository(LinkedIdentity)
     private LinkedIdentityRepository: Repository<LinkedIdentity>
 ){}
-async create(createLinkedIdentityDto: CreateLinkedIdentityDto) {
+  async create(createLinkedIdentityDto: CreateLinkedIdentityDto) {
   //return 'This action adds a new student';
   const newLinkedIdentity = this.LinkedIdentityRepository.create(createLinkedIdentityDto);
   //ideally, below should be wrapped in a transaction so that it can roll back if there is error in any of the stages.
@@ -25,22 +26,22 @@ async create(createLinkedIdentityDto: CreateLinkedIdentityDto) {
 }
 
   async findAll() {
-    return `This action returns all linkedIdentity`;
+   // return `This action returns all linkedIdentity`;
     return await this.LinkedIdentityRepository.find();
   }
 
   async findOne(id: number) {
-    return `This action returns a #${id} linkedIdentity`;
+   // return `This action returns a #${id} linkedIdentity`;
     return await this.LinkedIdentityRepository.findOne(id);
   }
 
   async update(id: number, updateLinkedIdentityDto: UpdateLinkedIdentityDto) {
-    return `This action updates a #${id} linkedIdentity`;
+   // return `This action updates a #${id} linkedIdentity`;
     return await this.LinkedIdentityRepository.update(id,updateLinkedIdentityDto);
   }
 
   async remove(id: number) {
-    return `This action removes a #${id} linkedIdentity`;
+   // return `This action removes a #${id} linkedIdentity`;
     return await this.LinkedIdentityRepository.delete(id);
   }
 
